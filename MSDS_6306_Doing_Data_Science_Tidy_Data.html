@@ -217,7 +217,7 @@ head(y2015)</code></pre>
 </div>
 <div id="c.-merge-y2016-and-y2015-by-your-name-column-assign-it-to-final.-the-client-only-cares-about-names-that-have-data-for-both-2016-and-2015-there-should-be-no-na-values-in-either-of-your-amount-of-children-rows-after-merging." class="section level3">
 <h3>c. Merge y2016 and y2015 by your Name column; assign it to final. The client only cares about names that have data for both 2016 and 2015; there should be no NA values in either of your amount of children rows after merging.</h3>
-<pre class="r"><code>final &lt;- merge(y2016, y2015, by=&quot;Name&quot;, all= FALSE)</code></pre>
+<pre class="r"><code>final &lt;- merge(y2016, y2015, by=c(&quot;Name&quot;,&quot;Sex&quot;), all= FALSE)</code></pre>
 </div>
 </div>
 <div id="data-summary-30-points-utilize-your-data-frame-object-final-for-this-part." class="section level2">
@@ -228,15 +228,14 @@ head(y2015)</code></pre>
 library(reshape2)
 final$Total &lt;- final$Occurences.x + final$Occurences.y
 str(final)</code></pre>
-<pre><code>## 'data.frame':    31641 obs. of  6 variables:
+<pre><code>## 'data.frame':    26550 obs. of  5 variables:
 ##  $ Name        : Factor w/ 30295 levels &quot;Aaban&quot;,&quot;Aabha&quot;,..: 1 2 5 6 7 8 9 10 11 12 ...
-##  $ Sex.x       : Factor w/ 2 levels &quot;F&quot;,&quot;M&quot;: 2 1 1 2 2 2 2 2 2 1 ...
+##  $ Sex         : Factor w/ 2 levels &quot;F&quot;,&quot;M&quot;: 2 1 1 2 2 2 2 2 2 1 ...
 ##  $ Occurences.x: int  9 7 11 18 11 194 28 6 5 14 ...
-##  $ Sex.y       : Factor w/ 2 levels &quot;F&quot;,&quot;M&quot;: 2 1 1 2 2 2 2 2 2 1 ...
 ##  $ Occurences.y: int  15 7 5 22 15 297 31 5 11 8 ...
 ##  $ Total       : int  24 14 16 40 26 491 59 11 16 22 ...</code></pre>
 <pre class="r"><code>format(sum(final$Total), big.mark = &quot;,&quot;)</code></pre>
-<pre><code>## [1] &quot;11,404,228&quot;</code></pre>
+<pre><code>## [1] &quot;7,239,231&quot;</code></pre>
 </div>
 <div id="b.-sort-the-data-by-total.-what-are-the-top-10-most-popular-names" class="section level3">
 <h3>b. Sort the data by Total. What are the top 10 most popular names?</h3>
@@ -247,33 +246,15 @@ str(final)</code></pre>
 <pre class="r"><code>girl &lt;- final[final$Sex.x == &quot;F&quot;, ]
 girl &lt;- girl[-c(2,3,4,5)]
 head(girl, n=10)</code></pre>
-<pre><code>##            Name Total
-## 9819       Emma 39829
-## 23608    Olivia 38884
-## 27782    Sophia 33451
-## 3727        Ava 32577
-## 12698  Isabella 30296
-## 21722       Mia 29237
-## 6511  Charlotte 24411
-## 300     Abigail 24070
-## 9801      Emily 22692
-## 11838    Harper 21016</code></pre>
+<pre><code>## [1] Name
+## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
 </div>
 <div id="d.-write-these-top-10-girl-names-and-their-totals-to-a-csv-file-called-itsagirl.csv.-do-not-include-row-labels.-leave-out-columns-other-than-name-and-total." class="section level3">
 <h3>d. Write these top 10 girl Names and their Totals to a CSV file called itsagirl.csv. Do not include row labels. Leave out columns other than Name and Total.</h3>
 <pre class="r"><code>girl &lt;- head(girl, n=10)
 girl</code></pre>
-<pre><code>##            Name Total
-## 9819       Emma 39829
-## 23608    Olivia 38884
-## 27782    Sophia 33451
-## 3727        Ava 32577
-## 12698  Isabella 30296
-## 21722       Mia 29237
-## 6511  Charlotte 24411
-## 300     Abigail 24070
-## 9801      Emily 22692
-## 11838    Harper 21016</code></pre>
+<pre><code>## [1] Name
+## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
 <pre class="r"><code>write.table(girl, file = &quot;itsagirl.csv&quot;, col.names = FALSE, row.names = FALSE, sep =&quot;,&quot;)</code></pre>
 </div>
 </div>

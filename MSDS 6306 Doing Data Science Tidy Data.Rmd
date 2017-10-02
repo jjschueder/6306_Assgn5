@@ -71,7 +71,7 @@ tail(y2015, n=10)
 ###c. Merge y2016 and y2015 by your Name column; assign it to final.  The client only cares about names that have data for both 2016 and 2015; there should be no NA values in either of your amount of children rows after merging.
 
 ```{r 2c}
-final <- merge(y2016, y2015, by="Name", all= FALSE)
+final <- merge(y2016, y2015, by=c("Name","Sex"), all= FALSE)
 ```
 
 ##3. Data Summary (30 points): Utilize your data frame object final for this part. 
